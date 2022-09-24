@@ -57,9 +57,9 @@ function migrate() {
 
     echo "-------------------------------------------"
     echo PS: 请事先确保对端主机满足以下条件:
-    echo a) 开放了root的ssh权限。
-    echo b) selinux关闭。
-    echo c) 对端已经安装了docker/podman-docker
+    echo a. 开放了root的ssh权限
+    echo b. selinux关闭
+    echo c. 对端已经安装了docker/podman-docker
     echo 请输入对端ip:
     echo "-------------------------------------------"
 
