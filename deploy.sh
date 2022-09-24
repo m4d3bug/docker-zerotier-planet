@@ -1,7 +1,8 @@
 #!/bin/bash
 
+imageName="zerotier-planet"
+
 function deploy() {
-    imageName="zerotier-planet"
 
     # 处理ip信息
     curr_ip=$(curl -s cip.cc | grep http | awk -F '/' '{print $4}')
@@ -52,12 +53,16 @@ function deploy() {
     docker cp zerotier-planet:/app/bin/planet /opt/planet
 }
 
+function migrate() {
+    echo $imageName
+}
+
 function menu() {
     echo
     echo "=============功能菜单============="
     echo "| 1 - 安装"
-    #echo "| 2 - 更新"
-    #echo "| 3 - 卸载"
+    echo "| 2 - 迁移"
+    #echo "| 3 - 更新"
     echo "| q - 退出"
     echo "---------------------------------"
     printf "请选择菜单："
@@ -67,8 +72,10 @@ function menu() {
         echo "安装"
         deploy
 
-    #elif [ "$n" = "2" ]; then
-    #    echo $n
+    elif [ "$n" = "2" ]; then
+        echo "迁移"
+        migrate
+
     #elif [ "$n" = "3" ]; then
     #    echo $n
     elif [ "$n" = "q" ]; then
