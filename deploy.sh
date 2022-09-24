@@ -76,7 +76,7 @@ function migrate() {
     
     echo "----------------------------"
     echo 迁移完成，请在对端主机执行部署命令：
-    echo git clone https://github.com/m4d3bug/docker-zerotier-planet && ./deploy.sh
+    echo "git clone https://github.com/m4d3bug/docker-zerotier-planet && ./deploy.sh"
     echo "----------------------------"
 }
 
