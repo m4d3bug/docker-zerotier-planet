@@ -60,8 +60,8 @@ function migrate() {
     echo a. 开放了root的ssh权限
     echo b. selinux关闭
     echo c. 对端已经安装了docker/podman-docker
-    echo 请输入对端ip:
     echo "-------------------------------------------"
+    echo "请输入对端ip："
 
     read remote_ip
 
