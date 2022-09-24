@@ -54,7 +54,30 @@ function deploy() {
 }
 
 function migrate() {
-    echo $imageName
+
+    echo "-------------------------------------------"
+    echo PS: 请事先确保对端主机满足以下条件:
+    echo a) 开放了root的ssh权限。
+    echo b) selinux关闭。
+    echo c) 对端已经安装了docker/podman-docker
+    echo 请输入对端ip:
+    echo "-------------------------------------------"
+
+    read remote_ip
+
+    echo "----------------------------"
+    echo "对端ip为:$remote_ip, 请输入对端端口:"
+
+    read remote_port
+    
+    docker stop $imageName
+    docker run --rm --volume ztncui:/from alpine ash -c "cd /from ; tar -cf - . " | ssh root@$remote_ip -p $remote_port 'docker run --rm -i --volume ztncui:/to alpine ash -c "cd /to ; tar -xpvf - " '
+    docker run --rm --volume zt1:/from alpine ash -c "cd /from ; tar -cf - . " | ssh root@$remote_ip -p $remote_port  'docker run --rm -i --volume zt1:/to alpine ash -c "cd /to ; tar -xpvf - " '
+    
+    echo "----------------------------"
+    echo 迁移完成，请在对端主机执行部署命令：
+    echo git clone https://github.com/m4d3bug/docker-zerotier-planet && ./deploy.sh
+    echo "----------------------------"
 }
 
 function menu() {
