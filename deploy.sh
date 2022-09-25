@@ -70,9 +70,14 @@ function migrate() {
 
     read remote_port
     
+    echo "----------------------------"
+    echo "对端ip为:$remote_ip, 对端端口为:$remote_port, 请输入对端用户："
+
+    read remote_user
+    
     docker stop $imageName
-    docker run --rm --volume ztncui:/from alpine ash -c "cd /from ; tar -cf - . " | ssh root@$remote_ip -p $remote_port 'docker run --rm -i --volume ztncui:/to alpine ash -c "cd /to ; tar -xpvf - " '
-    docker run --rm --volume zt1:/from alpine ash -c "cd /from ; tar -cf - . " | ssh root@$remote_ip -p $remote_port  'docker run --rm -i --volume zt1:/to alpine ash -c "cd /to ; tar -xpvf - " '
+    docker run --rm --volume ztncui:/from alpine ash -c "cd /from ; tar -cf - . " | ssh $remote_user@$remote_ip -p $remote_port 'sudo docker run --rm -i --volume ztncui:/to alpine ash -c "cd /to ; tar -xpvf - " '
+    docker run --rm --volume zt1:/from alpine ash -c "cd /from ; tar -cf - . " | ssh $remote_user@$remote_ip -p $remote_port  'sudo docker run --rm -i --volume zt1:/to alpine ash -c "cd /to ; tar -xpvf - " '
     
     echo "----------------------------"
     echo 迁移完成，请在对端主机执行部署命令：
