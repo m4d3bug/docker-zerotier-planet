@@ -57,9 +57,10 @@ function migrate() {
 
     echo "-------------------------------------------"
     echo PS: 请事先确保对端主机满足以下条件:
-    echo a. 开放了root的ssh权限
-    echo b. selinux关闭
-    echo c. 对端已经安装了docker/podman-docker
+    echo a. 局域网的机器没有替换planet
+    echo b. ssh用户可以免密sudo
+    echo c. selinux关闭
+    echo d. 对端已经安装了docker/podman-docker
     echo "-------------------------------------------"
     echo "请输入对端ip："
 
@@ -81,7 +82,7 @@ function migrate() {
     
     echo "----------------------------"
     echo 迁移完成，请在对端主机执行部署命令：
-    echo "git clone https://github.com/m4d3bug/docker-zerotier-planet && ./deploy.sh"
+    echo "git clone https://github.com/m4d3bug/docker-zerotier-planet && ./docker-zerotier-planet/deploy.sh"
     echo "----------------------------"
 }
 
