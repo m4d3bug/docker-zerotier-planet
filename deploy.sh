@@ -57,10 +57,10 @@ function migrate() {
 
     echo "-------------------------------------------"
     echo PS: 请事先确保对端主机满足以下条件:
-    echo a. 局域网的机器没有替换planet
-    echo b. ssh用户可以免密sudo
-    echo c. selinux关闭
-    echo d. 对端已经安装了docker/podman-docker
+    echo a. ssh用户可以免密sudo
+    echo b. selinux关闭
+    echo c. 对端已经安装了docker/podman-docker
+    echo 另外,替换了planet的主机需要自行手动下载新的planet文件进行替换
     echo "-------------------------------------------"
     echo "请输入对端ip："
 
